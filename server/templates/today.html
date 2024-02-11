@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Things Todo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel='stylesheet' href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {}
+    </script>
+</head>
+
+<body class="w-screen h-screen flex">
+    <div class="bg-[url('https://unsplash.it/640/480')] w-3/6 h-screen bg-cover flex justify-end items-end">
+        <div class='w-full flex justify-end items-end backdrop-blur-sm'>
+            <div class="px-5 py-2 flex-col items-end">
+                <h1 class='text-3xl text-slate-50 font-bold'>Todos</h1>
+                <h2 class='text-xs text-slate-50 font-thin'>{{now.strftime("%A, %-d")}}
+            </div>
+        </div>
+    </div>
+    <ul class='mt-5 mx-10'>
+        {% for todo in todos %}
+        <li class='mb-3'>
+            <div class='flex items-center'>
+                {% if status == 'complete' %}
+                <i class="fa-solid fa-circle pr-3"></i>
+                {% elif status !='complete' %}
+                <i class="fa-regular fa-circle pr-3"></i>
+                {% endif %}
+                <h1 class="text-lg">{{todo['title']}}</h1>
+            </div>
+            <p class="text-sm text-slate-800">{{todo['project_title']}}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
